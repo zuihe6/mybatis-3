@@ -38,6 +38,14 @@ public class MetaObject {
   private final ObjectWrapperFactory objectWrapperFactory;
   private final ReflectorFactory reflectorFactory;
 
+  /**
+   * 实例化meta object
+   *
+   * @param object 源对象
+   * @param objectFactory 对象工厂
+   * @param objectWrapperFactory 对象wrapper 工厂
+   * @param reflectorFactory reflector 工厂
+   */
   private MetaObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory,
       ReflectorFactory reflectorFactory) {
     this.originalObject = object;
@@ -110,6 +118,20 @@ public class MetaObject {
     return objectWrapper.hasGetter(name);
   }
 
+  /**
+   * get object value
+   * <p>
+   * user对象
+   * 解析orders[0].id
+   * 1.index:orders[0]            child:id
+   * 2. 递归: indexName=orders[0]   ->   getValue
+   * 3.  [获取集合值] -> orders[0] 获取orders实例对象
+   * 4.   再递归: 解析order:id属性
+   * <p>
+   *
+   * @param name property name
+   * @return object
+   */
   public Object getValue(String name) {
     PropertyTokenizer prop = new PropertyTokenizer(name);
     return objectWrapper.get(prop);

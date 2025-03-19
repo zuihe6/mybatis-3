@@ -22,6 +22,9 @@ import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.reflection.property.PropertyTokenizer;
 
 /**
+ * 抽象了对象的属性信息
+ * 定义了一系列查询对象信息的方法、更新属性的方法
+ *
  * @author Clinton Begin
  */
 public interface ObjectWrapper {
