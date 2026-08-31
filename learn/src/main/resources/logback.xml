@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 设置 MyBatis 与 Mapper 的日志级别为 DEBUG，以便观察 SQL 语句与参数绑定 -->
+    <logger name="org.apache.ibatis" level="DEBUG"/>
+    <logger name="org.apache.ibatis.learn.UserMapper" level="DEBUG"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

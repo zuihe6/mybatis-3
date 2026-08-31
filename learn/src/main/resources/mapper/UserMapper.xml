@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apache.ibatis.learn.UserMapper">
+
+    <select id="selectById" resultType="org.apache.ibatis.learn.User">
+        SELECT id, name, age, email
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+</mapper>

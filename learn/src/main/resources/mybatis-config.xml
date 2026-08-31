@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!-- 使用 SLF4J 配合 logback 打印详细 SQL 执行日志 -->
+        <setting name="logImpl" value="SLF4J"/>
+        <!-- 开启驼峰与下划线命名自动转换 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!-- 类型别名包扫描 -->
+    <typeAliases>
+        <package name="org.apache.ibatis.learn"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用 JDBC 事务管理器 -->
+            <transactionManager type="JDBC"/>
+            <!-- 使用连接池数据源，指定 H2 内存库并在启动时自动执行 schema.sql -->
+            <dataSource type="POOLED">
+                <property name="driver" value="org.h2.Driver"/>
+                <property name="url" value="jdbc:h2:mem:mybatis_debug;DB_CLOSE_DELAY=-1;MODE=MySQL;INIT=RUNSCRIPT FROM 'classpath:db/schema.sql'"/>
+                <property name="username" value="sa"/>
+                <property name="password" value=""/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 注册 Mapper XML 映射文件 -->
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+    </mappers>
+
+</configuration>
